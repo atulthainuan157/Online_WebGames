@@ -3,38 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stone, Paper & Scissors Game </title>
+    <meta name="description" content="Play Rock Paper Scissors online against the computer on GameVerse.">
+    <title>Rock Paper & Scissors — GameVerse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="rock_paper_scissor.css">
 </head>
 <body>
-    <h1>Stone, Paper & Scissors </h1>
+    <!-- ===== TOP BAR ===== -->
+    <header class="top-bar" id="top-bar">
+        <a href="../easy_games.html" class="back-link" id="back-link">← Back</a>
+        <h1>Rock Paper & <span class="gradient-text">Scissors</span></h1>
+        <div class="spacer"></div>
+    </header>
 
-    <div class="choices">
-        <div id="rock" class="choice">
-            <img src="Assets/rock.png" alt="" srcset="">
+    <!-- ===== CHOICES ===== -->
+    <main class="game-area" id="game-area">
+        <p class="instruction">Choose your move</p>
+        <div class="choices" id="choices">
+            <div id="rock" class="choice">
+                <div class="choice-glow"></div>
+                <img src="Assets/rock.png" alt="Rock">
+                <span class="choice-label">Rock</span>
+            </div>
+            <div id="paper" class="choice">
+                <div class="choice-glow"></div>
+                <img src="Assets/paper.png" alt="Paper">
+                <span class="choice-label">Paper</span>
+            </div>
+            <div id="scissor" class="choice">
+                <div class="choice-glow"></div>
+                <img src="Assets/scissors.jpg" alt="Scissors">
+                <span class="choice-label">Scissors</span>
+            </div>
         </div>
-        <div id="paper" class="choice">
-            <img src="Assets/paper.png" alt="" srcset="">
-        </div>
-        <div id="scissor" class="choice">
-            <img src="Assets/scissors.jpg" alt="" srcset="">
-        </div>
-    </div>
 
-    <div class="score-board">
-        <div class="score">
-            <p id="user-score">0</p>
-            <p>You</p>
+        <!-- ===== SCORE BOARD ===== -->
+        <div class="score-board" id="score-board">
+            <div class="score-card you">
+                <p class="score-value" id="user-score">0</p>
+                <p class="score-label">You</p>
+            </div>
+            <div class="vs-divider">VS</div>
+            <div class="score-card cpu">
+                <p class="score-value" id="comp-score">0</p>
+                <p class="score-label">Computer</p>
+            </div>
         </div>
-        <div class="score">
-            <p id="comp-score">0</p>
-            <p>Computer</p>
-        </div>
-    </div>
 
-    <div class="msg-container">
-        <p id="msg">Play your move</p>
-    </div>
+        <!-- ===== MESSAGE ===== -->
+        <div class="msg-container" id="msg-container">
+            <p id="msg">Play your move</p>
+        </div>
+    </main>
+
     <script src="rock_paper_scissor.js"></script>
 </body>
 </html>
