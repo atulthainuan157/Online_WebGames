@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: white;
+    background-color: black;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between; /* equal spacing between child items */
+    gap: 1rem; /* optional space between items */
+    padding: 0 1rem;
+    background-color: rgb(48, 46, 50);
+    color: white;
+}
+
+.header img{
+    height: 50px;
+    width: 50px;
+}
+
+.games {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+}
+
+.game img{
+    margin: 5px;
+    height: 500px;
+    width: 50vmin;
+    background-color: black;
+}
+
+.game h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
