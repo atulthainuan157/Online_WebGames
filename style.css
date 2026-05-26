@@ -39,9 +39,10 @@ body {
 
 .game img{
     margin: 5px;
-    height: 500px;
+    height: 50vmin;
     width: 50vmin;
     background-color: black;
+    object-fit: cover;
 }
 
 .game h3 {
