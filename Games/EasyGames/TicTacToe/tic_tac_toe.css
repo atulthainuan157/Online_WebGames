@@ -72,3 +72,64 @@ h1 {
 .hide {
     display: none;
 }
+
+/* ===== Responsive: Tablet (max-width: 768px) ===== */
+@media (max-width: 768px) {
+    .container {
+        height: 60vh;
+    }
+
+    .game {
+        height: 55vmin;
+        width: 55vmin;
+    }
+
+    .box {
+        height: 16vmin;
+        width: 16vmin;
+        font-size: 7vmin;
+    }
+
+    #resetBtn, #newGameBtn {
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+}
+
+/* ===== Responsive: Mobile (max-width: 480px) ===== */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    .container {
+        height: 55vh;
+    }
+
+    .game {
+        height: 75vw;
+        width: 75vw;
+        gap: 1.2vmin;
+    }
+
+    .box {
+        height: 22vw;
+        width: 22vw;
+        font-size: 8vw;
+        border-radius: 0.6rem;
+    }
+
+    #resetBtn, #newGameBtn {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+        margin-top: 0.5rem;
+    }
+
+    #msg {
+        font-size: 4vmin;
+    }
+
+    .msg-container {
+        height: 12vmin;
+    }
+}
