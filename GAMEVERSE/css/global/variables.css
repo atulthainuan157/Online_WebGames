@@ -1,0 +1,14 @@
+:root {
+    --primary-color: #00ffcc; /* Neon Cyan */
+    --secondary-color: #ff00ff; /* Neon Magenta */
+    --background-color: #0a0a12; /* Deep Dark Blue/Black */
+    --surface-color: #1a1a2e;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0b8;
+    
+    --neon-glow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
+    --neon-glow-secondary: 0 0 10px var(--secondary-color), 0 0 20px var(--secondary-color), 0 0 40px var(--secondary-color);
+    
+    --font-main: 'Inter', sans-serif;
+    --font-heading: 'Outfit', sans-serif;
+}

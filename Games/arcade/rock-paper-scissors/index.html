@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Rock Paper Scissors online against the computer on GameVerse.">
+    <title>Rock Paper & Scissors — GameVerse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ===== TOP BAR ===== -->
+    <header class="top-bar" id="top-bar">
+        <a href="../../../index.html" class="back-link" id="back-link">← Home</a>
+        <h1>Rock Paper & <span class="gradient-text">Scissors</span></h1>
+        <div class="spacer"></div>
+    </header>
+
+    <!-- ===== CHOICES ===== -->
+    <main class="game-area" id="game-area">
+        <p class="instruction">Choose your move</p>
+        <div class="choices" id="choices">
+            <div id="rock" class="choice">
+                <div class="choice-glow"></div>
+                <img src="assets/images/rock.png" alt="Rock">
+                <span class="choice-label">Rock</span>
+            </div>
+            <div id="paper" class="choice">
+                <div class="choice-glow"></div>
+                <img src="assets/images/paper.png" alt="Paper">
+                <span class="choice-label">Paper</span>
+            </div>
+            <div id="scissor" class="choice">
+                <div class="choice-glow"></div>
+                <img src="assets/images/scissors.jpg" alt="Scissors">
+                <span class="choice-label">Scissors</span>
+            </div>
+        </div>
+
+        <!-- ===== SCORE BOARD ===== -->
+        <div class="score-board" id="score-board">
+            <div class="score-card you">
+                <p class="score-value" id="user-score">0</p>
+                <p class="score-label">You</p>
+            </div>
+            <div class="vs-divider">VS</div>
+            <div class="score-card cpu">
+                <p class="score-value" id="comp-score">0</p>
+                <p class="score-label">Computer</p>
+            </div>
+        </div>
+
+        <!-- ===== MESSAGE ===== -->
+        <div class="msg-container" id="msg-container">
+            <p id="msg">Play your move</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

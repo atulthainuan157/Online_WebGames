@@ -1,0 +1,173 @@
+/* ===================================================
+   RESPONSIVE.CSS — All media queries
+   =================================================== */
+
+/* ===== Tablet Landscape (1024px) ===== */
+@media (max-width: 1024px) {
+    .games-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+/* ===== Tablet Portrait (768px) ===== */
+@media (max-width: 768px) {
+    /* Navbar */
+    .navbar {
+        padding: 0.6rem 1.2rem;
+    }
+    .nav-brand img {
+        height: 36px;
+        width: 36px;
+    }
+    .brand-text {
+        font-size: 1.25rem;
+    }
+    .nav-links {
+        gap: 1.2rem;
+    }
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+
+    /* Top bar */
+    .top-bar {
+        padding: 0.8rem 1.2rem;
+    }
+    .top-bar h1 {
+        font-size: 1.25rem;
+    }
+    .spacer {
+        width: 40px;
+    }
+
+    /* Hero */
+    .hero {
+        min-height: 85vh;
+        padding: 5rem 1.5rem 3rem;
+    }
+
+    /* Games section */
+    .games-section {
+        padding: 3.5rem 1.5rem 4rem;
+    }
+    .games-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.25rem;
+        padding: 0;
+    }
+    .card-body {
+        padding: 1.2rem;
+    }
+
+    /* Page header */
+    .page-header {
+        padding: 6rem 1.5rem 2rem;
+    }
+}
+
+/* ===== Mobile (480px) ===== */
+@media (max-width: 480px) {
+    /* Navbar */
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+    .nav-brand img {
+        height: 32px;
+        width: 32px;
+    }
+    .brand-text {
+        font-size: 1.1rem;
+    }
+    .nav-links {
+        gap: 1rem;
+    }
+    .nav-links a {
+        font-size: 0.8rem;
+    }
+
+    /* Top bar */
+    .top-bar {
+        padding: 0.7rem 1rem;
+    }
+    .top-bar h1 {
+        font-size: 1.1rem;
+    }
+    .back-link {
+        font-size: 0.8rem;
+    }
+    .spacer {
+        width: 30px;
+    }
+
+    /* Hero */
+    .hero {
+        min-height: 80vh;
+        padding: 5rem 1rem 2.5rem;
+    }
+    .hero-desc {
+        margin-bottom: 2rem;
+    }
+    .btn-primary {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    /* Games section */
+    .games-section {
+        padding: 3rem 1rem 4rem;
+    }
+    .section-subtitle {
+        margin-bottom: 2rem;
+    }
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    .card-image-wrapper {
+        aspect-ratio: 16 / 10;
+    }
+    .card-body h3 {
+        font-size: 1.1rem;
+    }
+
+    /* Page header */
+    .page-header {
+        padding: 5.5rem 1rem 1.5rem;
+    }
+    .page-header p {
+        font-size: 0.9rem;
+    }
+
+    /* Buttons */
+    .btn-action {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* ===== Very Small (360px) ===== */
+@media (max-width: 360px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    .hero-subtitle {
+        font-size: 0.95rem;
+        letter-spacing: 0.1em;
+    }
+    .btn-primary {
+        padding: 0.7rem 1.6rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* ===== Landscape Phone ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 4rem 1.5rem 2rem;
+    }
+    .games-section {
+        padding: 2rem 1.5rem 3rem;
+    }
+}
