@@ -1,0 +1,58 @@
+/* ===================================================
+   BUTTONS.CSS — All button styles
+   =================================================== */
+
+.btn-primary {
+    display: inline-block;
+    padding: 0.9rem 2.8rem;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 24px rgba(124, 77, 255, 0.35);
+    letter-spacing: 0.02em;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(124, 77, 255, 0.5);
+    background: var(--accent-gradient-hover);
+}
+
+.btn-action {
+    padding: 0.8rem 2rem;
+    font-family: var(--font-family);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: var(--bg-card);
+    border: 1px solid rgba(124, 77, 255, 0.25);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    letter-spacing: 0.02em;
+}
+
+.btn-action:hover {
+    background: rgba(124, 77, 255, 0.15);
+    border-color: rgba(124, 77, 255, 0.5);
+    box-shadow: 0 4px 16px rgba(124, 77, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-accent {
+    background: var(--accent-gradient);
+    border: none;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(124, 77, 255, 0.3);
+}
+
+.btn-accent:hover {
+    box-shadow: 0 6px 24px rgba(124, 77, 255, 0.45);
+    background: linear-gradient(135deg, #33ddff, #9b6fff, #e96dfc);
+}
