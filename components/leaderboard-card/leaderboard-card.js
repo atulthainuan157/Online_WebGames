@@ -1,1 +1,0 @@
-﻿// Leaderboard Card component logic
