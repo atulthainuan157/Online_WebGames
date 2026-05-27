@@ -3,95 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GameVerse - Your ultimate online game store. Play easy, medium and hard games right in your browser.">
-    <title>GameVerse — Online Game Store</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Online Games</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- ===== NAVBAR ===== -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-brand">
-            <img src="Games/Assets/logo.png" alt="GameVerse Logo">
-            <span class="brand-text">Game<span class="accent">Verse</span></span>
+    <div class="header">
+        <img src="Games\Assets\logo.png" alt="" srcset="">
+        <h1>GameVerse</h1>
+        <h1>Online Game Store</h1>
+    </div>
+
+    <div class="games">
+        <div class="game">
+            <a href="Games/EasyGames/easy_games.html" class="game-link"><img src="Games/Assets/easyGames.png" alt="Easy games" srcset=""></a>
+            <h3>Easy</h3>
         </div>
-        <ul class="nav-links">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#games">Games</a></li>
-        </ul>
-    </nav>
-
-    <!-- ===== HERO SECTION ===== -->
-    <section class="hero" id="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-particles"></div>
-        <div class="hero-content">
-            <h1>Welcome to <span class="gradient-text">GameVerse</span></h1>
-            <p class="hero-subtitle">Play. Compete. Conquer.</p>
-            <p class="hero-desc">Discover and play amazing browser games — from casual fun to intense challenges.</p>
-            <a href="#games" class="btn-primary" id="explore-btn">Explore Games</a>
+        <div class="game">
+            <a href="Games/MediumGames/medium_games.html" class="game-link"><img src="Games/Assets/mediumGames.avif" alt="Medium games" srcset=""></a>
+            <h3>Medium</h3>
         </div>
-    </section>
-
-    <!-- ===== GAME CATEGORIES ===== -->
-    <section class="games-section" id="games">
-        <h2 class="section-title">Choose Your <span class="gradient-text">Difficulty</span></h2>
-        <p class="section-subtitle">Pick a category and start playing instantly</p>
-
-        <div class="games-grid">
-            <!-- Easy Card -->
-            <a href="Games/EasyGames/easy_games.html" class="game-card" id="easy-card">
-                <div class="card-image-wrapper">
-                    <img src="Games/Assets/easyGames.png" alt="Easy Games">
-                    <div class="card-badge easy">Beginner</div>
-                </div>
-                <div class="card-body">
-                    <h3>Easy Games</h3>
-                    <p>Casual and fun games to relax and enjoy</p>
-                    <span class="card-arrow">→</span>
-                </div>
-            </a>
-
-            <!-- Medium Card -->
-            <a href="Games/MediumGames/medium_games.html" class="game-card" id="medium-card">
-                <div class="card-image-wrapper">
-                    <img src="Games/Assets/mediumGames.png" alt="Medium Games">
-                    <div class="card-badge medium">Intermediate</div>
-                </div>
-                <div class="card-body">
-                    <h3>Medium Games</h3>
-                    <p>Brain-teasing puzzles that challenge your skills</p>
-                    <span class="card-arrow">→</span>
-                </div>
-            </a>
-
-            <!-- Hard Card -->
-            <a href="Games/HardGames/hard_games.html" class="game-card" id="hard-card">
-                <div class="card-image-wrapper">
-                    <img src="Games/Assets/hardGames.webp" alt="Hard Games">
-                    <div class="card-badge hard">Advanced</div>
-                </div>
-                <div class="card-body">
-                    <h3>Hard Games</h3>
-                    <p>Intense games for the true gaming masters</p>
-                    <span class="card-arrow">→</span>
-                </div>
-            </a>
+        <div class="game">
+            <a href="Games/HardGames/hard_games.html" class="game-link"><img src="Games/Assets/hardGames.webp" alt="Hard games" srcset=""></a>
+            <h3>Hard</h3>
         </div>
-    </section>
+    </div>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer" id="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <img src="Games/Assets/logo.png" alt="GameVerse Logo">
-                <span>Game<span class="accent">Verse</span></span>
-            </div>
-            <p class="footer-text">Play. Compete. Conquer. &copy; 2025 GameVerse</p>
-        </div>
-    </footer>
+
 
     <script src="script.js"></script>
 </body>

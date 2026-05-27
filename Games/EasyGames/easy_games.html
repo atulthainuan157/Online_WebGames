@@ -3,74 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Browse easy games on GameVerse. Fun casual games like Tic Tac Toe and Rock Paper Scissors.">
-    <title>Easy Games — GameVerse</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Online Games</title>
     <link rel="stylesheet" href="easy_games.css">
 </head>
 <body>
-    <!-- ===== NAVBAR ===== -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-brand">
-            <img src="logo.png" alt="GameVerse Logo">
-            <span class="brand-text">Game<span class="accent">Verse</span></span>
+    <div class="header">
+        <img src="logo.png" alt="" srcset="">
+        <h1>GameVerse</h1>
+        <h1>Online Game Store</h1>
+    </div>
+
+    <div class="games">
+        <div class="game">
+            <a href="TicTacToe/tic_tac_toe.html" class="game-link"><img src="Assets/TicTacToe.png" alt="Easy games" srcset=""></a>
+            <h3>Tic Tac Toe</h3>
         </div>
-        <ul class="nav-links">
-            <li><a href="../../index.html">Home</a></li>
-            <li><a href="#" class="active">Easy</a></li>
-        </ul>
-    </nav>
-
-    <!-- ===== PAGE HEADER ===== -->
-    <section class="page-header" id="page-header">
-        <div class="header-glow"></div>
-        <div class="header-content">
-            <a href="../../index.html" class="back-link" id="back-link">← Back to Categories</a>
-            <h1>Easy <span class="gradient-text">Games</span></h1>
-            <p>Casual and fun — perfect for quick play sessions</p>
+        <div class="game">
+            <a href="RockPaper&Scissors/rock_paper_scissor.html" class="game-link"><img src="Assets/RockPaperScissors.jpg" alt="Medium games" srcset=""></a>
+            <h3>Rock Paper & Scissors</h3>
         </div>
-    </section>
-
-    <!-- ===== GAMES GRID ===== -->
-    <section class="games-section" id="games-list">
-        <div class="games-grid">
-            <!-- Tic Tac Toe -->
-            <a href="TicTacToe/tic_tac_toe.html" class="game-card" id="tictactoe-card">
-                <div class="card-image-wrapper">
-                    <img src="Assets/TicTacToe.png" alt="Tic Tac Toe">
-                    <div class="card-overlay">
-                        <span class="play-icon">▶</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h3>Tic Tac Toe</h3>
-                    <p>Classic X and O strategy game</p>
-                    <span class="card-arrow">→</span>
-                </div>
-            </a>
-
-            <!-- Rock Paper & Scissors -->
-            <a href="RockPaper&Scissors/rock_paper_scissor.html" class="game-card" id="rps-card">
-                <div class="card-image-wrapper">
-                    <img src="Assets/RockPaperScissors.jpg" alt="Rock Paper Scissors">
-                    <div class="card-overlay">
-                        <span class="play-icon">▶</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h3>Rock Paper & Scissors</h3>
-                    <p>Beat the computer in this classic showdown</p>
-                    <span class="card-arrow">→</span>
-                </div>
-            </a>
+        <div class="game">
+            <a href="Games/HardGames/hard_games.html" class="game-link"><img src="Games/Assets/hardGames.webp" alt="Hard games" srcset=""></a>
+            <h3>Hard</h3>
         </div>
-    </section>
+    </div>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer" id="footer">
-        <p class="footer-text">GameVerse &copy; 2025 — Play. Compete. Conquer.</p>
-    </footer>
+
+
+    <script src="script.js"></script>
 </body>
 </html>
