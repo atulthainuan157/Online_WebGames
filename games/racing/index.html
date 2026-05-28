@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turbo Racer — GAMEVERSE</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600&display=swap');
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: #0a0e1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+    .hud {
+      display: flex; gap: 16px; margin-bottom: 12px;
+    }
+    .hud-item {
+      text-align: center; padding: 8px 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+    }
+    .hud-label { font-size:0.55rem; text-transform:uppercase; letter-spacing:2px; color:#6b7280; }
+    .hud-value {
+      font-family: 'Orbitron', sans-serif; font-size:1rem; font-weight:700;
+      background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    canvas {
+      border: 2px solid rgba(139,92,246,0.3);
+      border-radius: 12px;
+      box-shadow: 0 0 40px rgba(139,92,246,0.15);
+    }
+    .hint { margin-top:12px; font-size:0.65rem; color:#4b5563; }
+  </style>
+</head>
+<body>
+  <div class="hud">
+    <div class="hud-item"><div class="hud-label">Score</div><div class="hud-value" id="score">0</div></div>
+    <div class="hud-item"><div class="hud-label">Speed</div><div class="hud-value" id="speed">0</div></div>
+    <div class="hud-item"><div class="hud-label">Best</div><div class="hud-value" id="best">0</div></div>
+  </div>
+  <canvas id="game" width="400" height="560"></canvas>
+  <p class="hint">← → / A D to steer | Space to restart</p>
+
+  <script>
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    let player, obstacles, score, bestScore, speed, gameState, frameCount, lane;
+
+    bestScore = parseInt(localStorage.getItem('gv-racing-hs') || '0');
+    document.getElementById('best').textContent = bestScore;
+
+    const ROAD_LEFT = 80;
+    const ROAD_RIGHT = W - 80;
+    const ROAD_W = ROAD_RIGHT - ROAD_LEFT;
+    const LANE_W = ROAD_W / 3;
+    const CAR_W = 36;
+    const CAR_H = 60;
+
+    const COLORS = ['#ef4444','#3b82f6','#10b981','#f59e0b','#ec4899','#8b5cf6'];
+
+    function init() {
+      lane = 1;
+      player = { x: ROAD_LEFT + LANE_W * lane + LANE_W/2 - CAR_W/2, y: H - 100 };
+      obstacles = [];
+      score = 0;
+      speed = 3;
+      frameCount = 0;
+      gameState = 'playing';
+      document.getElementById('score').textContent = 0;
+      document.getElementById('speed').textContent = speed.toFixed(0);
+    }
+
+    function spawnObstacle() {
+      const l = Math.floor(Math.random() * 3);
+      const x = ROAD_LEFT + LANE_W * l + LANE_W/2 - CAR_W/2;
+      // Avoid spawning on top of recent obstacles
+      const tooClose = obstacles.some(o => o.y < -CAR_H + 40 && o.lane === l);
+      if (tooClose) return;
+      obstacles.push({
+        x, y: -CAR_H, lane: l,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        w: CAR_W, h: CAR_H
+      });
+    }
+
+    function update() {
+      if (gameState !== 'playing') return;
+      frameCount++;
+      speed = 3 + score * 0.03;
+      if (speed > 14) speed = 14;
+
+      // Spawn frequency scales with speed
+      const spawnRate = Math.max(25, 60 - Math.floor(speed * 2));
+      if (frameCount % spawnRate === 0) spawnObstacle();
+
+      // Move obstacles
+      obstacles.forEach(o => o.y += speed);
+      obstacles = obstacles.filter(o => o.y < H + 10);
+
+      // Score: passed obstacles
+      obstacles.forEach(o => {
+        if (!o.scored && o.y > player.y + CAR_H) {
+          o.scored = true;
+          score++;
+        }
+      });
+
+      // Collision
+      for (const o of obstacles) {
+        if (
+          player.x < o.x + o.w &&
+          player.x + CAR_W > o.x &&
+          player.y < o.y + o.h &&
+          player.y + CAR_H > o.y
+        ) {
+          gameState = 'dead';
+          if (score > bestScore) {
+            bestScore = score;
+            localStorage.setItem('gv-racing-hs', bestScore);
+          }
+        }
+      }
+
+      document.getElementById('score').textContent = score;
+      document.getElementById('speed').textContent = speed.toFixed(0);
+      document.getElementById('best').textContent = bestScore;
+    }
+
+    function draw() {
+      // Sky / BG
+      ctx.fillStyle = '#0a0e1a';
+      ctx.fillRect(0, 0, W, H);
+
+      // Grass
+      ctx.fillStyle = '#0d1a0d';
+      ctx.fillRect(0, 0, ROAD_LEFT, H);
+      ctx.fillRect(ROAD_RIGHT, 0, W - ROAD_RIGHT, H);
+
+      // Road
+      ctx.fillStyle = '#1a1a2e';
+      ctx.fillRect(ROAD_LEFT, 0, ROAD_W, H);
+
+      // Road edges
+      ctx.strokeStyle = '#8b5cf6';
+      ctx.lineWidth = 3;
+      ctx.shadowColor = '#8b5cf6';
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      ctx.moveTo(ROAD_LEFT, 0); ctx.lineTo(ROAD_LEFT, H);
+      ctx.moveTo(ROAD_RIGHT, 0); ctx.lineTo(ROAD_RIGHT, H);
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // Lane markings (dashed, scrolling)
+      const dashLen = 30;
+      const dashGap = 20;
+      const offset = (frameCount * speed) % (dashLen + dashGap);
+      ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([dashLen, dashGap]);
+      ctx.lineDashOffset = -offset;
+      for (let i = 1; i < 3; i++) {
+        const lx = ROAD_LEFT + LANE_W * i;
+        ctx.beginPath();
+        ctx.moveTo(lx, 0);
+        ctx.lineTo(lx, H);
+        ctx.stroke();
+      }
+      ctx.setLineDash([]);
+
+      // Draw obstacles (other cars)
+      obstacles.forEach(o => {
+        drawCar(o.x, o.y, o.color, false);
+      });
+
+      // Draw player
+      drawCar(player.x, player.y, '#06b6d4', true);
+
+      // Game over overlay
+      if (gameState === 'dead') {
+        ctx.fillStyle = 'rgba(10,14,26,0.85)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.textAlign = 'center';
+        ctx.font = '900 22px Orbitron';
+        ctx.fillStyle = '#ef4444';
+        ctx.fillText('💥 CRASHED!', W/2, H/2 - 20);
+        ctx.font = '400 13px Poppins';
+        ctx.fillStyle = '#9ca3af';
+        ctx.fillText(`Score: ${score} | Best: ${bestScore}`, W/2, H/2 + 15);
+        ctx.fillText('Press Space to restart', W/2, H/2 + 40);
+      }
+    }
+
+    function drawCar(x, y, color, isPlayer) {
+      // Car body
+      ctx.fillStyle = color;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = isPlayer ? 15 : 8;
+
+      // Main body
+      roundRect(x + 2, y + 8, CAR_W - 4, CAR_H - 16, 6);
+      ctx.fill();
+
+      // Windshield
+      ctx.fillStyle = isPlayer ? 'rgba(6,182,212,0.4)' : 'rgba(255,255,255,0.15)';
+      ctx.shadowBlur = 0;
+      roundRect(x + 6, y + 14, CAR_W - 12, 14, 3);
+      ctx.fill();
+
+      // Rear window
+      roundRect(x + 6, y + CAR_H - 26, CAR_W - 12, 10, 3);
+      ctx.fill();
+
+      // Headlights / Taillights
+      if (isPlayer) {
+        ctx.fillStyle = '#22d3ee';
+        ctx.shadowColor = '#22d3ee';
+        ctx.shadowBlur = 10;
+        ctx.fillRect(x + 4, y + 2, 8, 4);
+        ctx.fillRect(x + CAR_W - 12, y + 2, 8, 4);
+      } else {
+        ctx.fillStyle = '#ef4444';
+        ctx.shadowColor = '#ef4444';
+        ctx.shadowBlur = 8;
+        ctx.fillRect(x + 4, y + CAR_H - 6, 8, 4);
+        ctx.fillRect(x + CAR_W - 12, y + CAR_H - 6, 8, 4);
+      }
+      ctx.shadowBlur = 0;
+    }
+
+    function roundRect(x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
+
+    // Controls
+    const keys = {};
+    document.addEventListener('keydown', (e) => {
+      keys[e.key] = true;
+      if (e.code === 'Space' && gameState === 'dead') {
+        init();
+      }
+    });
+    document.addEventListener('keyup', (e) => {
+      keys[e.key] = false;
+    });
+
+    function handleInput() {
+      if (gameState !== 'playing') return;
+      const moveSpeed = 4;
+      if (keys['ArrowLeft'] || keys['a']) {
+        player.x -= moveSpeed;
+      }
+      if (keys['ArrowRight'] || keys['d']) {
+        player.x += moveSpeed;
+      }
+      // Clamp to road
+      if (player.x < ROAD_LEFT + 4) player.x = ROAD_LEFT + 4;
+      if (player.x + CAR_W > ROAD_RIGHT - 4) player.x = ROAD_RIGHT - CAR_W - 4;
+    }
+
+    init();
+
+    let updateCounter = 0;
+    function loop() {
+      handleInput();
+      updateCounter++;
+      if (updateCounter % 2 === 0) update();
+      draw();
+      requestAnimationFrame(loop);
+    }
+    loop();
+  </script>
+</body>
+</html>

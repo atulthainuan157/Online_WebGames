@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Chess — GAMEVERSE</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600&display=swap');
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: #0a0e1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif; font-size: 1.3rem;
+      background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    .status { font-size:0.85rem; color:#9ca3af; margin-bottom:14px; min-height:24px; }
+    .status.check { color: #ef4444; }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(8, 56px);
+      grid-template-rows: repeat(8, 56px);
+      gap: 0;
+      border: 2px solid rgba(139,92,246,0.3);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 0 40px rgba(139,92,246,0.12);
+    }
+    .cell {
+      width: 56px; height: 56px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.7rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s ease;
+      position: relative;
+    }
+    .cell.light { background: rgba(139,92,246,0.08); }
+    .cell.dark { background: rgba(10,14,26,0.9); }
+    .cell:hover { background: rgba(139,92,246,0.2); }
+    .cell.selected { background: rgba(139,92,246,0.35) !important; box-shadow: inset 0 0 15px rgba(139,92,246,0.4); }
+    .cell.move-hint::after {
+      content: '';
+      position: absolute;
+      width: 14px; height: 14px;
+      background: rgba(6,182,212,0.4);
+      border-radius: 50%;
+    }
+    .cell.capture-hint { background: rgba(239,68,68,0.2) !important; }
+    .controls { display: flex; gap: 10px; }
+    button {
+      padding: 8px 22px;
+      font-family: 'Orbitron', sans-serif; font-size:0.65rem; font-weight:700;
+      letter-spacing:2px; text-transform:uppercase; color:#fff;
+      background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+      border:none; border-radius:50px; cursor:pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover { transform:translateY(-2px); box-shadow:0 8px 25px rgba(139,92,246,0.5); }
+    .captured {
+      display: flex; gap:4px; margin-bottom:8px; min-height:28px;
+      font-size: 1.1rem; opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <h1>♟️ CYBER CHESS</h1>
+  <div class="status" id="status">White's turn</div>
+  <div class="captured" id="captured-black"></div>
+  <div class="board" id="board"></div>
+  <div class="captured" id="captured-white"></div>
+  <div class="controls">
+    <button onclick="initGame()">New Game</button>
+    <button onclick="undoMove()">Undo</button>
+  </div>
+
+  <script>
+    // Simplified chess - complete move logic for all pieces
+    const PIECES = {
+      'R': '♜', 'N': '♞', 'B': '♝', 'Q': '♛', 'K': '♚', 'P': '♟',
+      'r': '♖', 'n': '♘', 'b': '♗', 'q': '♕', 'k': '♔', 'p': '♙'
+    };
+
+    const INIT_BOARD = [
+      ['R','N','B','Q','K','B','N','R'],
+      ['P','P','P','P','P','P','P','P'],
+      ['','','','','','','',''],
+      ['','','','','','','',''],
+      ['','','','','','','',''],
+      ['','','','','','','',''],
+      ['p','p','p','p','p','p','p','p'],
+      ['r','n','b','q','k','b','n','r']
+    ];
+
+    let board, turn, selected, validMoves, history, capturedW, capturedB;
+
+    function initGame() {
+      board = INIT_BOARD.map(r => [...r]);
+      turn = 'white';
+      selected = null;
+      validMoves = [];
+      history = [];
+      capturedW = [];
+      capturedB = [];
+      render();
+    }
+
+    function isWhite(piece) { return piece && piece === piece.toLowerCase(); }
+    function isBlack(piece) { return piece && piece === piece.toUpperCase(); }
+    function isAlly(piece, t) { return t === 'white' ? isWhite(piece) : isBlack(piece); }
+    function isEnemy(piece, t) { return piece && !isAlly(piece, t); }
+
+    function getMoves(r, c) {
+      const piece = board[r][c];
+      if (!piece) return [];
+      const moves = [];
+      const t = isWhite(piece) ? 'white' : 'black';
+      const type = piece.toLowerCase();
+      const dir = t === 'white' ? -1 : 1;
+
+      const addIfValid = (nr, nc) => {
+        if (nr < 0 || nr > 7 || nc < 0 || nc > 7) return false;
+        if (isAlly(board[nr][nc], t)) return false;
+        moves.push([nr, nc]);
+        return !board[nr][nc]; // Can continue if empty
+      };
+
+      if (type === 'p') {
+        // Forward
+        const nr = r + dir;
+        if (nr >= 0 && nr <= 7 && !board[nr][c]) {
+          moves.push([nr, c]);
+          // Double first move
+          const startRow = t === 'white' ? 6 : 1;
+          if (r === startRow && !board[r + dir * 2][c]) moves.push([r + dir * 2, c]);
+        }
+        // Captures
+        for (const dc of [-1, 1]) {
+          const nc = c + dc;
+          if (nc >= 0 && nc <= 7 && nr >= 0 && nr <= 7 && isEnemy(board[nr][nc], t)) {
+            moves.push([nr, nc]);
+          }
+        }
+      } else if (type === 'r') {
+        for (const [dr, dc] of [[0,1],[0,-1],[1,0],[-1,0]])
+          for (let i = 1; i < 8; i++) if (!addIfValid(r+dr*i, c+dc*i)) break;
+      } else if (type === 'b') {
+        for (const [dr, dc] of [[1,1],[1,-1],[-1,1],[-1,-1]])
+          for (let i = 1; i < 8; i++) if (!addIfValid(r+dr*i, c+dc*i)) break;
+      } else if (type === 'q') {
+        for (const [dr, dc] of [[0,1],[0,-1],[1,0],[-1,0],[1,1],[1,-1],[-1,1],[-1,-1]])
+          for (let i = 1; i < 8; i++) if (!addIfValid(r+dr*i, c+dc*i)) break;
+      } else if (type === 'n') {
+        for (const [dr, dc] of [[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]])
+          addIfValid(r+dr, c+dc);
+      } else if (type === 'k') {
+        for (const [dr, dc] of [[0,1],[0,-1],[1,0],[-1,0],[1,1],[1,-1],[-1,1],[-1,-1]])
+          addIfValid(r+dr, c+dc);
+      }
+      return moves;
+    }
+
+    function handleClick(r, c) {
+      const piece = board[r][c];
+
+      if (selected) {
+        const [sr, sc] = selected;
+        const isValidMove = validMoves.some(([mr, mc]) => mr === r && mc === c);
+
+        if (isValidMove) {
+          // Execute move
+          const captured = board[r][c];
+          history.push({ from: [sr, sc], to: [r, c], piece: board[sr][sc], captured });
+
+          if (captured) {
+            if (isWhite(captured)) capturedW.push(captured);
+            else capturedB.push(captured);
+          }
+
+          board[r][c] = board[sr][sc];
+          board[sr][sc] = '';
+
+          // Pawn promotion
+          const p = board[r][c];
+          if (p.toLowerCase() === 'p' && (r === 0 || r === 7)) {
+            board[r][c] = isWhite(p) ? 'q' : 'Q';
+          }
+
+          turn = turn === 'white' ? 'black' : 'white';
+          selected = null;
+          validMoves = [];
+          render();
+          return;
+        }
+
+        // Clicked own piece - reselect
+        if (piece && isAlly(piece, turn)) {
+          selected = [r, c];
+          validMoves = getMoves(r, c);
+          render();
+          return;
+        }
+
+        selected = null;
+        validMoves = [];
+        render();
+        return;
+      }
+
+      if (piece && isAlly(piece, turn)) {
+        selected = [r, c];
+        validMoves = getMoves(r, c);
+        render();
+      }
+    }
+
+    function undoMove() {
+      if (!history.length) return;
+      const last = history.pop();
+      board[last.from[0]][last.from[1]] = last.piece;
+      board[last.to[0]][last.to[1]] = last.captured || '';
+      if (last.captured) {
+        if (isWhite(last.captured)) capturedW.pop();
+        else capturedB.pop();
+      }
+      turn = turn === 'white' ? 'black' : 'white';
+      selected = null;
+      validMoves = [];
+      render();
+    }
+
+    function render() {
+      const boardEl = document.getElementById('board');
+      boardEl.innerHTML = '';
+
+      for (let r = 0; r < 8; r++) {
+        for (let c = 0; c < 8; c++) {
+          const cell = document.createElement('div');
+          const isLight = (r + c) % 2 === 0;
+          cell.className = `cell ${isLight ? 'light' : 'dark'}`;
+
+          if (selected && selected[0] === r && selected[1] === c) {
+            cell.classList.add('selected');
+          }
+
+          const isMove = validMoves.some(([mr, mc]) => mr === r && mc === c);
+          if (isMove) {
+            cell.classList.add(board[r][c] ? 'capture-hint' : 'move-hint');
+          }
+
+          if (board[r][c]) {
+            cell.textContent = PIECES[board[r][c]];
+          }
+
+          cell.addEventListener('click', () => handleClick(r, c));
+          boardEl.appendChild(cell);
+        }
+      }
+
+      document.getElementById('status').textContent = `${turn.charAt(0).toUpperCase() + turn.slice(1)}'s turn`;
+      document.getElementById('captured-white').textContent = capturedW.map(p => PIECES[p]).join(' ');
+      document.getElementById('captured-black').textContent = capturedB.map(p => PIECES[p]).join(' ');
+    }
+
+    initGame();
+  </script>
+</body>
+</html>

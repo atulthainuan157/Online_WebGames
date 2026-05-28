@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe — GAMEVERSE</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600&display=swap');
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: #0a0e1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .status {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      margin-bottom: 20px;
+      min-height: 24px;
+      transition: color 0.3s;
+    }
+    .status.winner { color: #10b981; }
+    .status.draw { color: #f59e0b; }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+    .cell {
+      width: 100px;
+      height: 100px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+    .cell:hover {
+      background: rgba(139,92,246,0.08);
+      border-color: rgba(139,92,246,0.3);
+      transform: scale(1.05);
+    }
+    .cell.x {
+      color: #8b5cf6;
+      text-shadow: 0 0 20px rgba(139,92,246,0.6);
+    }
+    .cell.o {
+      color: #06b6d4;
+      text-shadow: 0 0 20px rgba(6,182,212,0.6);
+    }
+    .cell.win-cell {
+      background: rgba(16,185,129,0.1);
+      border-color: rgba(16,185,129,0.4);
+      box-shadow: 0 0 20px rgba(16,185,129,0.2);
+    }
+    .cell.disabled {
+      cursor: default;
+      pointer-events: none;
+    }
+    .scores {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .score-item {
+      text-align: center;
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      min-width: 80px;
+    }
+    .score-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #6b7280;
+    }
+    .score-value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .score-value.x-score { color: #8b5cf6; }
+    .score-value.o-score { color: #06b6d4; }
+    .score-value.d-score { color: #f59e0b; }
+    button {
+      padding: 10px 28px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(139,92,246,0.5);
+    }
+    .mode-toggle {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .mode-btn {
+      padding: 6px 16px;
+      font-size: 0.65rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .mode-btn.active {
+      background: rgba(139,92,246,0.15);
+      border-color: rgba(139,92,246,0.3);
+    }
+  </style>
+</head>
+<body>
+  <h1>⭕ TIC TAC TOE</h1>
+
+  <div class="mode-toggle">
+    <button class="mode-btn active" id="mode-pvp" onclick="setMode('pvp')">PVP</button>
+    <button class="mode-btn" id="mode-ai" onclick="setMode('ai')">VS AI</button>
+  </div>
+
+  <div class="status" id="status">Player X's turn</div>
+
+  <div class="scores">
+    <div class="score-item">
+      <div class="score-label">Player X</div>
+      <div class="score-value x-score" id="x-score">0</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">Draws</div>
+      <div class="score-value d-score" id="d-score">0</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">Player O</div>
+      <div class="score-value o-score" id="o-score">0</div>
+    </div>
+  </div>
+
+  <div class="board" id="board"></div>
+  <button onclick="resetGame()">New Game</button>
+
+  <script>
+    let board = Array(9).fill('');
+    let currentPlayer = 'X';
+    let gameOver = false;
+    let mode = 'pvp';
+    let scores = {X:0, O:0, D:0};
+
+    const WINS = [
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[2,4,6]
+    ];
+
+    const boardEl = document.getElementById('board');
+    const statusEl = document.getElementById('status');
+
+    function renderBoard() {
+      boardEl.innerHTML = '';
+      board.forEach((val, i) => {
+        const cell = document.createElement('div');
+        cell.className = `cell ${val ? val.toLowerCase() : ''} ${gameOver ? 'disabled' : ''}`;
+        cell.textContent = val;
+        cell.addEventListener('click', () => makeMove(i));
+        boardEl.appendChild(cell);
+      });
+    }
+
+    function makeMove(i) {
+      if (board[i] || gameOver) return;
+      board[i] = currentPlayer;
+      const win = checkWin(currentPlayer);
+      if (win) {
+        gameOver = true;
+        scores[currentPlayer]++;
+        updateScores();
+        statusEl.textContent = `🎉 Player ${currentPlayer} wins!`;
+        statusEl.className = 'status winner';
+        renderBoard();
+        highlightWin(win);
+        return;
+      }
+      if (board.every(c => c)) {
+        gameOver = true;
+        scores.D++;
+        updateScores();
+        statusEl.textContent = "It's a draw!";
+        statusEl.className = 'status draw';
+        renderBoard();
+        return;
+      }
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      statusEl.textContent = `Player ${currentPlayer}'s turn`;
+      statusEl.className = 'status';
+      renderBoard();
+
+      if (mode === 'ai' && currentPlayer === 'O' && !gameOver) {
+        setTimeout(aiMove, 400);
+      }
+    }
+
+    function checkWin(p) {
+      for (const combo of WINS) {
+        if (combo.every(i => board[i] === p)) return combo;
+      }
+      return null;
+    }
+
+    function highlightWin(combo) {
+      const cells = boardEl.querySelectorAll('.cell');
+      combo.forEach(i => cells[i].classList.add('win-cell'));
+    }
+
+    function aiMove() {
+      // Try to win
+      for (let i = 0; i < 9; i++) {
+        if (!board[i]) {
+          board[i] = 'O';
+          if (checkWin('O')) { board[i] = ''; makeMove(i); return; }
+          board[i] = '';
+        }
+      }
+      // Try to block
+      for (let i = 0; i < 9; i++) {
+        if (!board[i]) {
+          board[i] = 'X';
+          if (checkWin('X')) { board[i] = ''; makeMove(i); return; }
+          board[i] = '';
+        }
+      }
+      // Take center
+      if (!board[4]) { makeMove(4); return; }
+      // Take corner
+      const corners = [0,2,6,8].filter(i => !board[i]);
+      if (corners.length) { makeMove(corners[Math.floor(Math.random()*corners.length)]); return; }
+      // Take any
+      const empty = board.map((v,i) => v ? -1 : i).filter(i => i >= 0);
+      if (empty.length) makeMove(empty[Math.floor(Math.random()*empty.length)]);
+    }
+
+    function resetGame() {
+      board = Array(9).fill('');
+      currentPlayer = 'X';
+      gameOver = false;
+      statusEl.textContent = "Player X's turn";
+      statusEl.className = 'status';
+      renderBoard();
+    }
+
+    function setMode(m) {
+      mode = m;
+      document.getElementById('mode-pvp').classList.toggle('active', m === 'pvp');
+      document.getElementById('mode-ai').classList.toggle('active', m === 'ai');
+      resetGame();
+    }
+
+    function updateScores() {
+      document.getElementById('x-score').textContent = scores.X;
+      document.getElementById('o-score').textContent = scores.O;
+      document.getElementById('d-score').textContent = scores.D;
+    }
+
+    renderBoard();
+  </script>
+</body>
+</html>
