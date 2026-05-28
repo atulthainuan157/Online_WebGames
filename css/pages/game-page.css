@@ -1,0 +1,112 @@
+/* ============================================
+   GAMEVERSE — Game Page
+   Individual game play page layout
+   ============================================ */
+
+.game-page {
+  position: relative;
+  z-index: 2;
+  padding: 100px 0 60px;
+  min-height: 100vh;
+}
+
+.game-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.game-page-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.game-page-back:hover {
+  color: var(--neon-purple);
+}
+
+.game-page-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.game-frame-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  aspect-ratio: 4/3;
+  background: var(--bg-card);
+  border: 2px solid var(--neon-purple-dim);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-neon-purple);
+}
+
+.game-frame-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.game-details {
+  max-width: 900px;
+  margin: 32px auto 0;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.game-description {
+  padding: 24px;
+  background: var(--bg-card);
+  border: var(--border-glass);
+  border-radius: var(--radius-lg);
+}
+
+.game-description h3 {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.game-description p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.game-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.game-sidebar-card {
+  padding: 20px;
+  background: var(--bg-card);
+  border: var(--border-glass);
+  border-radius: var(--radius-lg);
+}
+
+.game-sidebar-card h4 {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .game-details {
+    grid-template-columns: 1fr;
+  }
+}

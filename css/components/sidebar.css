@@ -1,0 +1,89 @@
+/* ============================================
+   GAMEVERSE — Sidebar Component
+   Collapsible side navigation
+   ============================================ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--bg-glass);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-right: var(--border-glass);
+  z-index: 900;
+  padding: 80px 20px 20px;
+  transform: translateX(-100%);
+  transition: transform var(--transition-smooth);
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 26, 0.6);
+  z-index: 899;
+  display: none;
+}
+
+.sidebar-overlay.active {
+  display: block;
+}
+
+.sidebar-section {
+  margin-bottom: 28px;
+}
+
+.sidebar-section-title {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  padding-left: 12px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-bottom: 2px;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--neon-purple);
+}
+
+.sidebar-link-icon {
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.sidebar-link-badge {
+  margin-left: auto;
+  padding: 2px 8px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  color: #fff;
+  border-radius: 50px;
+}

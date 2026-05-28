@@ -1,0 +1,14 @@
+/* ============================================
+   GAMEVERSE — Leaderboard Page
+   ============================================ */
+
+.leaderboard {
+  position: relative;
+  z-index: 2;
+  padding: var(--section-padding);
+}
+
+.leaderboard-table {
+  max-width: 900px;
+  margin: 0 auto;
+}

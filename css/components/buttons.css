@@ -1,0 +1,161 @@
+/* ============================================
+   GAMEVERSE — Button Components
+   All button variants
+   ============================================ */
+
+/* ---------- Neon Button (Primary) ---------- */
+.btn-neon {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--gradient-primary);
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+  z-index: 1;
+}
+
+.btn-neon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-secondary);
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+  z-index: -1;
+}
+
+.btn-neon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+}
+
+.btn-neon:hover::before {
+  opacity: 1;
+}
+
+/* ---------- Outline Button ---------- */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  background: transparent;
+  border: 2px solid var(--neon-cyan-dim);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+
+.btn-outline:hover {
+  background: rgba(6, 182, 212, 0.1);
+  border-color: var(--neon-cyan);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-neon-cyan);
+}
+
+/* ---------- Small Play Button ---------- */
+.play-btn-sm {
+  padding: 10px 28px;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--gradient-primary);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+}
+
+.play-btn-sm:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(139, 92, 246, 0.5);
+}
+
+/* ---------- Filter Buttons ---------- */
+.filter-btn {
+  padding: 8px 22px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: var(--border-glass);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  color: var(--text-primary);
+  background: rgba(139, 92, 246, 0.15);
+  border-color: var(--neon-purple-dim);
+}
+
+/* ---------- Arena Join Button ---------- */
+.arena-join-btn {
+  width: 100%;
+  padding: 12px;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-smooth);
+}
+
+.arena-join-btn:hover {
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ---------- Challenge Claim Button ---------- */
+.challenge-claim-btn {
+  padding: 8px 22px;
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--gradient-primary);
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-fast);
+}
+
+.challenge-claim-btn:hover {
+  box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
+  transform: scale(1.05);
+}
+
+.challenge-claim-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
