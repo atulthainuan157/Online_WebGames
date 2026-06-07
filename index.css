@@ -13,6 +13,8 @@ html, body {
     display: flex;
     color: white;
     background-color: black;
+    position: fixed;
+    width: 100vw;
 }
 
 .header img{
@@ -29,7 +31,8 @@ html, body {
 }
 
 .main {
-    background-color: rgb(78, 37, 49);
+    background-color: #101d16;
+    padding-top: 10vh;
 }
 
 .games {
@@ -57,7 +60,7 @@ html, body {
     border-bottom: 0cap;
 }
 
-.game h4 {
+.game h3 {
     margin-top: 0%;
     padding-top: 0%;
     height: 40px;
@@ -68,6 +71,35 @@ html, body {
     justify-content: center;
     border: 5px solid burlywood;
     border-top: 0cap;
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     box-sizing: border-box;
+}
+
+
+.footer {
+    display: flex;
+    padding: 20px;
+    background-color: black;
+    color: whitesmoke;
+}
+
+.footer .gametype {
+    display: flex;
+    flex-direction: column;
+    padding-right: 50px;
+    border-right: 2px solid white;
+}
+
+.footer .gametype a{
+    text-decoration: none;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.footer .about {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
 }
