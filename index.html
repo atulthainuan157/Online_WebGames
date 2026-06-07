@@ -1,328 +1,102 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="GAMEVERSE - A futuristic browser gaming universe. Discover, play, and compete in stunning browser games with AAA-quality visuals.">
-  <meta name="keywords" content="browser games, online games, gaming platform, play games, arcade, puzzle, multiplayer">
-  <meta name="author" content="GAMEVERSE">
-  <title>GAMEVERSE — Next Generation Gaming Platform</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVerse</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-
-  <!-- ========== LOADING SCREEN ========== -->
-  <div class="loading-screen" id="loading-screen">
-    <div class="loading-ring"></div>
-    <div class="loading-logo">GAMEVERSE</div>
-    <div class="loading-bar-container">
-      <div class="loading-bar" id="loading-bar"></div>
+    <div class="header">
+        <img src="assets/images/logo.png" alt="" srcset="">
+        <h1>GameVerse - Play Online Games</h1>
     </div>
-    <p class="loading-text" id="loading-text">Initializing game engine...</p>
-  </div>
 
-  <!-- ========== PARTICLES ========== -->
-  <canvas id="particles-canvas"></canvas>
-
-  <!-- ========== NAVBAR ========== -->
-  <nav class="navbar" id="navbar">
-    <div class="container">
-      <a href="#" class="nav-logo">
-        <span class="nav-logo-icon">🎮</span>
-        GAMEVERSE
-      </a>
-
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="#hero" class="nav-link active">Home</a></li>
-        <li><a href="#games" class="nav-link">Games</a></li>
-        <li><a href="#categories" class="nav-link">Categories</a></li>
-        <li><a href="#multiplayer" class="nav-link">Multiplayer</a></li>
-        <li><a href="#leaderboard" class="nav-link">Leaderboard</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-      </ul>
-
-      <div class="nav-actions">
-        <button class="nav-action-btn" id="search-btn" aria-label="Search games">🔍</button>
-        <button class="nav-action-btn" id="theme-toggle" aria-label="Toggle theme">☀️</button>
-        <div class="hamburger" id="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
+    <div class="main">
+        <div class="games">
+            <div class="game">
+                <a href=""><img src="assets/images/snake.png" alt="image"></a>
+                <h4>Snake</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/flappy-bird.png" alt="image"></a>
+                <h4>Flappy Bird</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/pacman.png" alt="image"></a>
+                <h4>Pacman</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/brick-beaker.png" alt="image"></a>
+                <h4>Brick breaker</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/sudoku.png" alt="image"></a>
+                <h4>Sudoku</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/2048.png" alt="image"></a>
+                <h4>2048</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/memory-game.png" alt="image"></a>
+                <h4>Memory game</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/maze.png" alt="image"></a>
+                <h4>Maze</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/zombie-shooter.png" alt="image"></a>
+                <h4>Zombie Shooter</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/endless_runner.png" alt="image"></a>
+                <h4>Endless Runner</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/ninja-slash.png" alt="image"></a>
+                <h4>Ninja slash</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/chess.png" alt="image"></a>
+                <h4>Chess</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/ludo.png" alt="image"></a>
+                <h4>Ludo</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/quiz-battle.png" alt="image"></a>
+                <h4>Quiz battle</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/cricket.png" alt="image"></a>
+                <h4>Cricket</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/footbal.png" alt="image"></a>
+                <h4>Football</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/basketball.png" alt="image"></a>
+                <h4>Basketball</h4>
+            </div>
+            <div class="game">
+                <a href="games/Tic-Tac-Toe/tic_tac_toe.html"><img src="assets/images/tic-tac-toe.png" alt="image"></a>
+                <h4>Tic tac toe</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/danger.jpg" alt="image"></a>
+                <h4>connect4</h4>
+            </div>
+            <div class="game">
+                <a href=""><img src="assets/images/danger.jpg" alt="image"></a>
+                <h4>Checkers</h4>
+            </div>
         </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ========== SEARCH OVERLAY ========== -->
-  <div class="search-overlay" id="search-overlay">
-    <div class="search-box">
-      <div class="search-input-wrapper">
-        <input type="text" class="search-input" id="search-input" placeholder="Search games, categories...">
-        <span class="search-close" id="search-close">✕</span>
-      </div>
-      <div class="search-results" id="search-results"></div>
-    </div>
-  </div>
-
-  <!-- ========== HERO ========== -->
-  <section class="hero" id="hero">
-    <div class="hero-bg">
-      <div class="hero-glow hero-glow-1"></div>
-      <div class="hero-glow hero-glow-2"></div>
-      <div class="hero-glow hero-glow-3"></div>
-      <div class="grid-bg"></div>
     </div>
 
-    <div class="hero-floating-element">🎮</div>
-    <div class="hero-floating-element">🕹️</div>
-    <div class="hero-floating-element">👾</div>
-    <div class="hero-floating-element">🏆</div>
-
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        Platform is Live — 2,400+ Players Online
-      </div>
-
-      <h1 class="hero-title">
-        <span class="glow-text">ENTER THE</span><br>
-        <span class="gradient-text">NEXT GENERATION</span><br>
-        <span class="glow-text">OF GAMING</span>
-      </h1>
-
-      <p class="hero-description">
-        Discover a universe of browser games. Play instantly, compete globally, and experience gaming like never before — all from your browser.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#games" class="btn-neon">▶ Play Now</a>
-        <a href="#categories" class="btn-outline">🔍 Explore Games</a>
-      </div>
-
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="hero-stat-number" data-target="150" data-suffix="+">0</div>
-          <div class="hero-stat-label">Games</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-number" data-target="24000" data-suffix="+">0</div>
-          <div class="hero-stat-label">Active Players</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-number" data-target="10" data-suffix="">0</div>
-          <div class="hero-stat-label">Categories</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-number" data-target="99" data-suffix="%">0</div>
-          <div class="hero-stat-label">Uptime</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== FEATURED GAMES ========== -->
-  <section class="featured-games" id="games">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">🎮 Game Library</span>
-        <h2 class="section-title">Featured Games</h2>
-        <p class="section-subtitle">Jump into our handpicked selection of the best browser games. Play instantly — no downloads required.</p>
-      </div>
-
-      <div class="games-filter reveal">
-        <button class="filter-btn active" data-filter="All">All Games</button>
-        <button class="filter-btn" data-filter="Arcade">Arcade</button>
-        <button class="filter-btn" data-filter="Puzzle">Puzzle</button>
-        <button class="filter-btn" data-filter="Board">Board</button>
-        <button class="filter-btn" data-filter="Racing">Racing</button>
-      </div>
-
-      <div class="games-grid" id="games-grid"></div>
-    </div>
-  </section>
-
-  <!-- ========== CATEGORIES ========== -->
-  <section class="categories" id="categories">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">📂 Browse</span>
-        <h2 class="section-title">Game Categories</h2>
-        <p class="section-subtitle">Explore our diverse collection of game genres. There's something for every type of gamer.</p>
-      </div>
-
-      <div class="categories-grid" id="categories-grid"></div>
-    </div>
-  </section>
-
-  <!-- ========== TRENDING ========== -->
-  <section class="trending" id="trending">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">🔥 Hot Right Now</span>
-        <h2 class="section-title">Trending Games</h2>
-        <p class="section-subtitle">See what everyone's playing. These games are dominating the charts right now.</p>
-      </div>
-    </div>
-
-    <div class="trending-track-wrapper">
-      <div class="trending-track" id="trending-track"></div>
-    </div>
-  </section>
-
-  <!-- ========== MULTIPLAYER ARENA ========== -->
-  <section class="multiplayer" id="multiplayer">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">⚔️ Compete</span>
-        <h2 class="section-title">Multiplayer Arena</h2>
-        <p class="section-subtitle">Jump into live matches with players from around the world. Real-time competition awaits.</p>
-      </div>
-
-      <div class="arena-grid" id="arena-grid"></div>
-    </div>
-  </section>
-
-  <!-- ========== LEADERBOARD ========== -->
-  <section class="leaderboard" id="leaderboard">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">🏆 Rankings</span>
-        <h2 class="section-title">Global Leaderboard</h2>
-        <p class="section-subtitle">The best of the best. Can you climb the ranks and claim the #1 spot?</p>
-      </div>
-
-      <div class="leaderboard-table" id="leaderboard-table"></div>
-    </div>
-  </section>
-
-  <!-- ========== DAILY CHALLENGES ========== -->
-  <section class="challenges" id="challenges">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">🎯 Daily Missions</span>
-        <h2 class="section-title">Daily Challenges</h2>
-        <p class="section-subtitle">Complete daily missions to earn XP, unlock rewards, and climb the leaderboard.</p>
-      </div>
-
-      <div class="challenges-grid" id="challenges-grid"></div>
-    </div>
-  </section>
-
-  <!-- ========== ABOUT ========== -->
-  <section class="about" id="about">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">ℹ️ Our Story</span>
-        <h2 class="section-title">About GAMEVERSE</h2>
-      </div>
-
-      <div class="about-content">
-        <div class="about-text reveal-left">
-          <h3>A Futuristic Browser Gaming Universe</h3>
-          <p>GAMEVERSE is a next-generation gaming platform built for gamers around the world. We believe gaming should be instant, accessible, and stunning. No downloads, no installs — just pure gaming joy from your browser.</p>
-          <p>Our mission is to create the most immersive browser gaming experience ever made. With AAA-quality visuals, seamless multiplayer, and a growing library of games, GAMEVERSE is where the future of gaming begins.</p>
-        </div>
-
-        <div class="about-features reveal-right">
-          <div class="about-feature">
-            <span class="about-feature-icon">⚡</span>
-            <span class="about-feature-text">Instant Play</span>
-          </div>
-          <div class="about-feature">
-            <span class="about-feature-icon">🌍</span>
-            <span class="about-feature-text">Global Multiplayer</span>
-          </div>
-          <div class="about-feature">
-            <span class="about-feature-icon">🏆</span>
-            <span class="about-feature-text">Leaderboards & XP</span>
-          </div>
-          <div class="about-feature">
-            <span class="about-feature-icon">📱</span>
-            <span class="about-feature-text">All Devices</span>
-          </div>
-          <div class="about-feature">
-            <span class="about-feature-icon">🎨</span>
-            <span class="about-feature-text">Premium UI</span>
-          </div>
-          <div class="about-feature">
-            <span class="about-feature-icon">🔒</span>
-            <span class="about-feature-text">Safe & Secure</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div>
-          <a href="#" class="nav-logo" style="margin-bottom:16px;display:inline-flex;">
-            <span class="nav-logo-icon">🎮</span>
-            GAMEVERSE
-          </a>
-          <p class="footer-brand-desc">The next generation browser gaming platform. Play, compete, and explore an ever-growing universe of games.</p>
-          <div class="footer-socials">
-            <a href="#" class="footer-social-link" aria-label="Twitter">𝕏</a>
-            <a href="#" class="footer-social-link" aria-label="Discord">💬</a>
-            <a href="#" class="footer-social-link" aria-label="YouTube">▶</a>
-            <a href="#" class="footer-social-link" aria-label="GitHub">⌨</a>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="footer-heading">Platform</h4>
-          <ul class="footer-links">
-            <li><a href="#games">All Games</a></li>
-            <li><a href="#categories">Categories</a></li>
-            <li><a href="#trending">Trending</a></li>
-            <li><a href="#multiplayer">Multiplayer</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-heading">Community</h4>
-          <ul class="footer-links">
-            <li><a href="#leaderboard">Leaderboard</a></li>
-            <li><a href="#challenges">Challenges</a></li>
-            <li><a href="#">Discord Server</a></li>
-            <li><a href="#">Bug Reports</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-heading">Company</h4>
-          <ul class="footer-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-divider"></div>
-
-      <div class="footer-bottom">
-        <p class="footer-copyright">© 2026 GAMEVERSE. All rights reserved. Built with ❤️ for gamers.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ========== GAME MODAL ========== -->
-  <div class="game-modal" id="game-modal">
-    <div class="game-modal-header">
-      <h3 class="game-modal-title" id="game-modal-title">Game</h3>
-      <button class="game-modal-close" onclick="closeGameModal()">✕</button>
-    </div>
-    <div class="game-modal-body" id="game-modal-body"></div>
-  </div>
-
-  <!-- ========== BACK TO TOP ========== -->
-  <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
-
-  <script src="js/main.js"></script>
+    <div class="footer"></div>
 </body>
 </html>
