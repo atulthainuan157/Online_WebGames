@@ -48,7 +48,8 @@ img {
     gap: 5rem;
 }
 
-#user-score, #comp-score {
+#user-score,
+#comp-score {
     font-size: 4rem;
 }
 

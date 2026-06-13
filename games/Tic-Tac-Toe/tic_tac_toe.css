@@ -3,7 +3,8 @@
     padding: 0%;
 }
 
-html, body {
+html,
+body {
     background-color: #101d16;
     text-align: center;
 }
@@ -46,6 +47,7 @@ h1 {
     background-color: black;
     border-radius: 1rem;
 }
+
 #newGameBtn {
     padding: 1rem;
     font-size: 1.2rem;

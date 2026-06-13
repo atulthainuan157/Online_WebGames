@@ -4,7 +4,8 @@
     /* background-color: black; */
 }
 
-html, body {
+html,
+body {
     margin: 0%;
     padding: 0%;
 }
@@ -17,7 +18,7 @@ html, body {
     width: 100vw;
 }
 
-.header img{
+.header img {
     height: 10vmin;
 }
 
@@ -90,7 +91,7 @@ html, body {
     border-right: 2px solid white;
 }
 
-.footer .gametype a{
+.footer .gametype a {
     text-decoration: none;
     color: white;
     margin-bottom: 5px;

@@ -9,7 +9,7 @@ let comp = document.querySelector("#comp-score");
 const generateCompChoice = () => {
     // rock, paper, scissor
     const options = ["rock", "paper", "scissor"];
-    const idx = Math.floor(Math.random()*3);
+    const idx = Math.floor(Math.random() * 3);
     return options[idx];
 }
 
@@ -20,7 +20,7 @@ const drawGame = () => {
 }
 
 const showWinner = (userWin, userChoice, compChoice) => {
-    if(userWin) {
+    if (userWin) {
         userScore++;
         user.innerText = userScore;
         msg.innerText = `You win! your ${userChoice} beats ${compChoice}`;
@@ -39,20 +39,20 @@ const playGame = (userChoice) => {
     // Generate computer choice
     const compChoice = generateCompChoice();
     console.log("computer choice : ", compChoice);
-    if(userChoice === compChoice) {
+    if (userChoice === compChoice) {
         // Draw Game
         drawGame();
     }
     else {
         let userWin = true;
-        if(userChoice === "rock") {
-            userWin = (compChoice === "paper")? false : true;
+        if (userChoice === "rock") {
+            userWin = (compChoice === "paper") ? false : true;
         }
-        else if(userChoice === "paper") {
-            userWin = (compChoice === "rock")? true : false;
+        else if (userChoice === "paper") {
+            userWin = (compChoice === "rock") ? true : false;
         }
         else {
-            userWin = (compChoice === "rock")? false : true;
+            userWin = (compChoice === "rock") ? false : true;
         }
         showWinner(userWin, userChoice, compChoice);
     }
