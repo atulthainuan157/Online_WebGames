@@ -1,0 +1,9 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1a1a2e;color:#fff;font-family:'Segoe UI',sans-serif;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:10px}
+.back-btn{align-self:flex-start;color:#0ff;text-decoration:none;margin:10px;font-size:1rem}
+h1{margin:10px 0;font-size:1.6rem}
+.score-board{display:flex;gap:30px;margin:8px 0;font-size:1.1rem}
+.score-board strong{color:#ffd700}
+canvas{border:2px solid #0ff;display:block;max-width:100%;height:auto;cursor:pointer}
+#overlay{position:absolute;display:flex;align-items:center;justify-content:center;pointer-events:none}
+#msg{background:rgba(0,0,0,.7);padding:12px 25px;border-radius:10px;font-size:1.1rem;color:#ffd700;text-align:center}
