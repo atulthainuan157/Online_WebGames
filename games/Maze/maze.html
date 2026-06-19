@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Maze - GameVerse</title><link rel="stylesheet" href="maze.css"></head><body>
+<a href="../../index.html" class="back-btn">← Back to Games</a>
+<h1>🧩 Maze Escape</h1>
+<div class="score-board"><span>Level: <strong id="level">1</strong></span></div>
+<canvas id="gameCanvas" width="400" height="400"></canvas>
+<div id="overlay"><p id="overlayText">Press Space or Tap to Start</p></div>
+<div class="controls">
+    <button onclick="changeDir('up')">▲</button>
+    <div>
+        <button onclick="changeDir('left')">◀</button>
+        <button onclick="changeDir('down')">▼</button>
+        <button onclick="changeDir('right')">▶</button>
+    </div>
+</div>
+<script src="maze.js"></script></body></html>

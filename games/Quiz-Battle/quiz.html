@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Quiz Battle - GameVerse</title><link rel="stylesheet" href="quiz.css"></head><body>
+<a href="../../index.html" class="back-btn">← Back to Games</a>
+<div class="quiz-container">
+    <h1>❓ Quiz Battle</h1>
+    <div id="startScreen">
+        <p>Test your knowledge!</p>
+        <button id="startBtn">Start Quiz</button>
+    </div>
+    <div id="quizScreen" class="hide">
+        <div class="header-info"><span>Question <strong id="qNum">1</strong>/10</span><span>Score: <strong id="score">0</strong></span></div>
+        <h2 id="question">Question text here?</h2>
+        <div id="options" class="options-grid"></div>
+        <button id="nextBtn" class="hide">Next</button>
+    </div>
+    <div id="endScreen" class="hide">
+        <h2>Game Over!</h2>
+        <p>Your Score: <strong id="finalScore">0</strong>/10</p>
+        <button id="restartBtn">Play Again</button>
+    </div>
+</div>
+<script src="quiz.js"></script></body></html>

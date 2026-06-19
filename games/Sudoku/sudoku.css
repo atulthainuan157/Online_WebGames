@@ -1,0 +1,14 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1a1a2e;color:#fff;font-family:'Segoe UI',sans-serif;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:10px}
+.back-btn{align-self:flex-start;color:#0ff;text-decoration:none;margin:10px;font-size:1rem}
+h1{margin:10px 0;font-size:2rem;color:#e94560}
+.controls{display:flex;gap:15px;margin:10px 0}
+button{padding:8px 16px;border:none;border-radius:8px;background:#0f3460;color:#fff;cursor:pointer;font-size:1rem}
+#board{display:grid;grid-template-columns:repeat(9,1fr);border:3px solid #fff;background:#fff;width:min(400px,95vw);aspect-ratio:1;gap:1px}
+.cell{background:#16213e;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:bold;color:#fff}
+.cell input{width:100%;height:100%;background:transparent;border:none;color:#0ff;font-size:1.5rem;text-align:center;font-weight:bold;outline:none}
+.cell.fixed{color:#fff}
+.cell.error input{color:#f00}
+.cell:nth-child(3n){border-right:2px solid #fff}
+.cell:nth-child(9n){border-right:none}
+.cell:nth-child(n+19):nth-child(-n+27),.cell:nth-child(n+46):nth-child(-n+54){border-bottom:2px solid #fff}
