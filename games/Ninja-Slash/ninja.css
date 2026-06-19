@@ -1,0 +1,9 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1a1a2e;color:#fff;font-family:'Segoe UI',sans-serif;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:10px}
+.back-btn{align-self:flex-start;color:#0ff;text-decoration:none;margin:10px;font-size:1rem}
+h1{margin:10px 0;font-size:2rem;color:#ff3333}
+.score-board{display:flex;gap:30px;margin:10px 0;font-size:1.1rem}
+.score-board strong{color:#ff3333}
+canvas{background:url('https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=600&h=400&q=80') center/cover;display:block;max-width:100%;height:auto;border:2px solid #ff3333;cursor:crosshair;touch-action:none}
+#overlay{position:absolute;display:flex;align-items:center;justify-content:center;pointer-events:none}
+#overlayText{background:rgba(0,0,0,.7);padding:15px 30px;border-radius:10px;font-size:1.2rem;color:#ff3333;text-align:center}
