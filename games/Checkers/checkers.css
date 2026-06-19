@@ -25,8 +25,8 @@ body {
 .box {
     margin: 0%;
     padding: 0%;
-    height: 50px;
-    width: 50px;
+    height: 80px;
+    width: 80px;
     border: 1px solid black;
 }
 
@@ -69,6 +69,7 @@ h1 {
     color: aliceblue;
     background-color: black;
     border-radius: 1rem;
+    display: none;
 }
 
 #msg {
@@ -86,6 +87,6 @@ h1 {
 }
 
 .hide {
-    /* display: none; */
+    display: none;
     color: #ff0554;
 }
